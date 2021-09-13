@@ -154,7 +154,7 @@ const handleRadio = (event) => {
     //rightBody.appendChild(blobImage)
     //rightBody.style.backgroundImage = "url(`assets/images/blob.png`)"
     rightBody.style.backgroundImage = "url('assets/images/blob.png')"
-    rightBody.style.border='red solid'
+  
   }
   else if(event.target.value != "Blob"){
     isBlob.checked = false
@@ -179,32 +179,46 @@ let cardDiv = document.createElement("div")
 cardDiv.setAttribute("id","id"+id.toString())
 id = id+1
 let cardHeading = document.createElement("h1")
+let cardbodyDiv = document.createElement("div")
 let cardBody = document.createElement("img")
 let cancel = document.createElement("img")
+cancel.style.position="relative"
+cancel.style.right = "-150px"
+cancel.style.top = "-10px"
 cancel.src = "assets/images/icon_delete.png"
 cancel.style.height = "35px"
 cancel.style.height = "35px"
-
 cardDiv.appendChild(cancel)
 cancel.addEventListener("click", () => {deleteCard(cardDiv.id)})
 
 cardHeading.innerHTML = text
 cardHeading.style.fontSize = "50px"
 cardHeading.style.fontWeight = "bold"
-cardHeading.style.marginBottom = "20px"
+//cardHeading.style.marginBottom = "5px"
+cardHeading.style.marginTop = "-20px"
 cardBody.src = rightBody.children[0].src
+cardbodyDiv.appendChild(cardBody)
+cardbodyDiv.style.height = "230px"
+cardbodyDiv.style.marginTop="-5px"
+
+if(isBlob.checked) {
+  cardbodyDiv.style.backgroundImage =  "url('assets/images/blob.png')"
+  cardbodyDiv.style.backgroundSize = "cover"
+
+
+}
 cardBody.style.width = "150px"
 cardBody.style.height = "150px"
 
 //cardBody.appendChild(rightBody.children[0])
 cardDiv.appendChild(cardHeading)
-cardDiv.appendChild(cardBody)
+cardDiv.appendChild(cardbodyDiv)
 cardDiv.style.border = "black solid"
 cardDiv.style.marginRight = "20px"
 cardDiv.style.height = "300px"
 cardDiv.style.width = "300px"
 cardDiv.style.marginTop = "30px"
-cardDiv.style.position = "relative"
+//cardDiv.style.position = "relative"
 cardDiv.style.backgroundColor = bgColor.value
 
 
