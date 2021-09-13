@@ -3,6 +3,7 @@
 Your code goes in this file
 --------------------------------------------------------------
 */
+var id = 1
 let root = document.querySelector("#root");
 
 let main = document.createElement("div")
@@ -44,18 +45,18 @@ const displayImage = (text) =>{
 
   let buttonImage = document.createElement("img")
   buttonImage.style.height = "150px"
+  buttonImage.style.width = "150px"
+  //buttonImage.style.zIndex = 4
+  //buttonImage.style.position = "absolute"
+  //buttonImage.style.top = "60px"
+  //buttonImage.style.left = "80px"
+
   let element = document.querySelector(".rightImageDiv")
-
-
-
-
+  console.log(element.value)
   if (element.hasChildNodes()) {
+    console.log(element.childNodes)
     element.removeChild(element.childNodes[0]);
   }
-
-  buttonImage.style.width = "150px"
-  //if()
-
   switch(text){
     case "Polaroid" : buttonImage.src = "assets/images/polaroid.png";break;
     case "TV" : buttonImage.src = "assets/images/tv.png";break;
@@ -63,7 +64,7 @@ const displayImage = (text) =>{
     case "Traitor" : buttonImage.src = "assets/images/among-us.png";break;
     case "Radio" : buttonImage.src = "assets/images/radio-02.png";break;
   }
-
+  //rightBody.style.border = "red solid"
   rightBody.appendChild(buttonImage)
 }
 
@@ -129,24 +130,86 @@ radioDiv.appendChild(isNope)
 radioDiv.appendChild(isNopeLabel)
 buttonsGroup2.appendChild(radioDiv)
 radioDiv.style.border = "solid black"
-
 leftSide.appendChild(buttonsGroup2)
 
+let blobImage = document.createElement("img")
+blobImage.src = "assets/images/blob.png"
+blobImage.style.height = "350px"
+blobImage.style.width = "350px"
+blobImage.style.zIndex = 1
+//blobImage.style.position="relative"
+//blobImage.style.top ="0"
+//blobImage.style.left = "0"
+//blobImage.style.bottom = "150px"
+//blobImage.style.bottom = "130px"
+
+
+
+const handleRadio = (event) => {
+  //console.log(event.target)
+  if(event.target.value == "Blob"){
+    console.log(event.target)
+    isNope.checked=false
+    event.target.checked = true
+    //rightBody.appendChild(blobImage)
+    //rightBody.style.backgroundImage = "url(`assets/images/blob.png`)"
+    rightBody.style.backgroundImage = "url('assets/images/blob.png')"
+    rightBody.style.border='red solid'
+  }
+  else if(event.target.value != "Blob"){
+    isBlob.checked = false
+    event.target.checked = true
+    rightBody.style.backgroundImage = "none"
+  }
+
+}
+
+isBlob.addEventListener("click",(event) => {handleRadio(event)})
+isNope.addEventListener("click",(event) => {handleRadio(event)})
+
+const deleteCard = (id) => {
+  let toDeleteCard = document.querySelector(`#${id}`)
+  console.log(toDeleteCard)
+  showCardDiv.removeChild(toDeleteCard)
+}
 
 
 const showCard = (text,img) => {
 let cardDiv = document.createElement("div")
+cardDiv.setAttribute("id","id"+id.toString())
+id = id+1
 let cardHeading = document.createElement("h1")
-let cardBody = document.createElement("div")
+let cardBody = document.createElement("img")
+let cancel = document.createElement("img")
+cancel.src = "assets/images/icon_delete.png"
+cancel.style.height = "35px"
+cancel.style.height = "35px"
+
+cardDiv.appendChild(cancel)
+cancel.addEventListener("click", () => {deleteCard(cardDiv.id)})
+
 cardHeading.innerHTML = text
 cardHeading.style.fontSize = "50px"
 cardHeading.style.fontWeight = "bold"
 cardHeading.style.marginBottom = "20px"
-cardBody.appendChild(img[0])
+cardBody.src = rightBody.children[0].src
+cardBody.style.width = "150px"
+cardBody.style.height = "150px"
+
+//cardBody.appendChild(rightBody.children[0])
 cardDiv.appendChild(cardHeading)
 cardDiv.appendChild(cardBody)
 cardDiv.style.border = "black solid"
 cardDiv.style.marginRight = "20px"
+cardDiv.style.height = "300px"
+cardDiv.style.width = "300px"
+cardDiv.style.marginTop = "30px"
+cardDiv.style.position = "relative"
+cardDiv.style.backgroundColor = bgColor.value
+
+
+
+cardDiv.style.textAlign = "center"
 showCardDiv.appendChild(cardDiv)
 
 }
@@ -172,8 +235,8 @@ insideMainDiv.appendChild(leftSide)
 
 insideMainDiv.style.display = "flex"
 //insideMainDiv.style.justifyContent = "center"
-leftSide.style.marginLeft="300px"
-rightSide.style.marginLeft="300px"
+leftSide.style.marginLeft="200px"
+rightSide.style.marginLeft="400px"
 rightSide.style.marginTop="100px"
 let rightHeading = document.createElement("h1")
 rightHeading.style.fontWeight = "bold"
@@ -184,7 +247,14 @@ rightHeading.style.textAlign = "center"
 
 let rightBody = document.createElement("div")
 rightBody.style.marginTop = "30px"
+//rightBody.style.position = "relative"
+//rightBody.style.top = "0px"
+//rightBody.style.left = "0px"
+
 rightBody.classList.add("rightImageDiv")
+rightBody.style.height = "200px"
+rightBody.style.width = "200px"
+rightBody.style.backgroundSize = "cover"
 rightSide.appendChild(rightHeading)
 rightSide.appendChild(rightBody)
 insideMainDiv.appendChild(rightSide)
@@ -196,11 +266,10 @@ showCardDiv.style.display = "flex"
 showCardDiv.style.flexDirection = "row"
 showCardDiv.style.flexWrap = "wrap"
 showCardDiv.style.textAlign = "center"
-
-
-
-showCardDiv.style.marginLeft = "400px"
-showCardDiv.style.marginRight = "400px"
+showCardDiv.style.marginLeft = "200px"
+showCardDiv.style.marginRight = "200px"
 showCardDiv.style.marginTop = "40px"
 
 main.appendChild(showCardDiv)
+
+
