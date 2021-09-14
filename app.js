@@ -8,6 +8,8 @@ let root = document.querySelector("#root");
 
 let main = document.createElement("div")
 main.style.fontFamily="Montserrat"
+main.style.width = "100%"
+main.style.height = "100%"
 let insideMainDiv = document.createElement("div")
 window.onload = function () {
   document.body.appendChild(main);
@@ -26,29 +28,29 @@ let leftSide = document.createElement("div")
 let rightSide = document.createElement("div")
 let appHeading = document.createElement("header")
 appHeading.innerHTML = "BLING!"
-StyleElements(`text-align:center; margin-top:30px; font-size:30px; font-weight:bold; margin-bottom:10px`,appHeading)
+StyleElements(`text-align:center; margin-top:1rem; font-size:30px; font-weight:bold; margin-bottom:1rem; text-shadow:2px 2px #c79619`,appHeading)
 main.appendChild(appHeading)
 
 let headerDiv = document.createElement("div")
 let headerOne = document.createElement("h2")
 headerOne.innerHTML = "Sizzle your Life"
-StyleElements(`margin-top:50px; font-size:30px;`,headerOne)
+StyleElements(`margin-top:3rem; font-size:30px;`,headerOne)
 headerDiv.appendChild(headerOne)
 
 let headerTwo = document.createElement("h1")
 headerTwo.innerHTML = "Make a Card"
 headerDiv.appendChild(headerTwo)
-StyleElements(`font-size:50px; margin-top:20px; font-weight:bold; margin-top:30px; margin-bottom:80px`,headerTwo)
+StyleElements(`font-size:50px; margin-top:1rem; font-weight:bold; margin-top:2rem; margin-bottom:5rem`,headerTwo)
 leftSide.appendChild(headerDiv)
 
 
 const displayImage = (text) =>{
   let buttonImage = document.createElement("img")
-  buttonImage.style.height = "100px"
-  buttonImage.style.width = "100px"
+  buttonImage.style.height = "6rem"
+  buttonImage.style.width = "6rem"
   buttonImage.style.position = "relative"
-  buttonImage.style.bottom = "20px"
-  buttonImage.style.left = "40px"
+  buttonImage.style.bottom = "0.8rem"
+  buttonImage.style.left = "2.5rem"
   buttonImage.style.textAlign="center"
 
   let element = document.querySelector(".rightImageDiv")
@@ -73,7 +75,7 @@ let buttonsGroup1 = document.createElement("div")
 const buttonCreate = (text) =>{
   let buttons= document.createElement("button")
   buttons.addEventListener("click",()=>{displayImage(text)})
-  StyleElements(`padding:10px; border:black solid; border-radius:10px; background-color:white; margin:10px; box-shadow:0px 2px;`,buttons)
+  StyleElements(`padding:0.8rem; border:black solid; border-radius:0.8rem; background-color:white; margin:0.8rem; box-shadow:0px 2px;`,buttons)
   buttons.innerHTML = text
   return buttons
 }
@@ -86,10 +88,10 @@ leftSide.appendChild(buttonsGroup1)
 let buttonsGroup2 = document.createElement("div")
 let blingName = document.createElement("input")
 blingName.oninput = function(event) {rightHeading.textContent = event.target.value}
-buttonsGroup2.style.margin="10px"
+buttonsGroup2.style.margin="0.8rem"
 blingName.setAttribute("type","text")
 blingName.setAttribute("placeholder","Name your bling!")
-StyleElements(`background-color:black; border-radius:10px; border:black solid; color:white; padding:10px`,blingName)
+StyleElements(`background-color:black; border-radius:0.8rem; border:black solid; color:white; padding:0.8rem`,blingName)
 buttonsGroup2.appendChild(blingName)
 
 let bgColors = ["Gold","Snow","DodgerBlue","LightSalmon", "LightCoral", ]
@@ -97,7 +99,7 @@ let bgColor = document.createElement("select")
 bgColor.onchange=function(event) {
   document.querySelector("body").style.backgroundColor = event.target.value
 }
-StyleElements(`background-color:black; margin-left:10px; color:white; height:35px`,bgColor)
+StyleElements(`background-color:black; margin-left:0.8rem; color:white; height:2.2rem`,bgColor)
 
 
 const colors = (text) =>{
@@ -125,7 +127,7 @@ radioDiv.appendChild(isBlobLabel)
 let isNope = document.createElement("input");
 let isNopeLabel = document.createElement("label");
 isNope.setAttribute("type", "radio");
-isNope.style.marginLeft="10px"
+isNope.style.marginLeft="0.8rem"
 isNope.setAttribute("value","Nope")
 isNopeLabel.innerHTML = "Nope"
 isNopeLabel.style.fontSize = "12px"
@@ -133,7 +135,7 @@ isNopeLabel.style.fontSize = "12px"
 radioDiv.appendChild(isNope)
 radioDiv.appendChild(isNopeLabel)
 buttonsGroup2.appendChild(radioDiv)
-StyleElements(`border:solid black; margin:10px; padding:5px; border-radius:10px; background-color:black; color:white;`,radioDiv)
+StyleElements(`border:solid black; margin-left:1rem; padding:0.5rem; border-radius:0.8px; background-color:black; color:white;`,radioDiv)
 leftSide.appendChild(buttonsGroup2)
 
 let blobImage = document.createElement("img")
@@ -225,25 +227,40 @@ leftSide.appendChild(cameraDiv)
 
 insideMainDiv.appendChild(leftSide)
 insideMainDiv.style.display = "flex"
-leftSide.style.marginLeft="200px"
-rightSide.style.marginLeft="400px"
+insideMainDiv.style.flexWrap = "wrap"
+insideMainDiv.style.width = "100%"
+leftSide.style.width = "45vw"
+rightSide.style.width = "30vw"
+leftSide.style.marginLeft="12rem"
+//ightSide.style.marginLeft= "50px"
+//leftSide.style.border = "black solid"
+//rightSide.style.border = "green solid"
+rightSide.style.flexFlow = 5
+//rightSide.style.marginLeft="25rem"
 
-rightSide.style.marginTop="100px"
+rightSide.style.marginTop="2rem"
+//rightSide.style.display = "flex"
+
+
 let rightHeading = document.createElement("h1")
 rightHeading.style.fontWeight = "bold"
-rightHeading.style.fontSize = "40px"
+rightHeading.style.fontSize ="40px"
 rightHeading.style.padding = "10px"
 rightHeading.style.textAlign = "center"
 
+
 let rightBody = document.createElement("div")
+
+rightBody.style.marginLeft = "4rem"
 rightBody.style.paddingTop = "70px"
 rightBody.classList.add("rightImageDiv")
-rightBody.style.height = "200px"
-rightBody.style.width = "200px"
+rightBody.style.height = "50%"
+rightBody.style.width = "50%"
 rightBody.style.backgroundSize = "cover"
 rightSide.appendChild(rightHeading)
 rightSide.appendChild(rightBody)
 insideMainDiv.appendChild(rightSide)
+
 main.appendChild(insideMainDiv)
 
 let showCardDiv = document.createElement("div")
