@@ -86,6 +86,8 @@ buttonList.map((buttonName)=>{
 leftSide.appendChild(buttonsGroup1)
 
 let buttonsGroup2 = document.createElement("div")
+
+
 let blingName = document.createElement("input")
 blingName.oninput = function(event) {rightHeading.textContent = event.target.value}
 buttonsGroup2.style.margin="0.8rem"
@@ -121,6 +123,7 @@ isBlob.setAttribute("type", "radio");
 isBlob.setAttribute("value","Blob")
 isBlobLabel.innerHTML = "Blob"
 isBlobLabel.style.fontSize = "12px"
+radioDiv.style.borderRadius = "20px"
 radioDiv.appendChild(isBlob)
 radioDiv.appendChild(isBlobLabel)
 
@@ -135,7 +138,7 @@ isNopeLabel.style.fontSize = "12px"
 radioDiv.appendChild(isNope)
 radioDiv.appendChild(isNopeLabel)
 buttonsGroup2.appendChild(radioDiv)
-StyleElements(`border:solid black; margin-left:1rem; padding:0.5rem; border-radius:0.8px; background-color:black; color:white;`,radioDiv)
+StyleElements(`border:solid black; margin-left:1rem; padding:0.5rem; border-radius:10px; background-color:black; color:white;`,radioDiv)
 leftSide.appendChild(buttonsGroup2)
 
 let blobImage = document.createElement("img")
@@ -178,8 +181,8 @@ cancel.src = "assets/images/icon_delete.png"
 cardDiv.appendChild(cancel)
 cancel.addEventListener("click", () => {deleteCard(cardDiv.id)})
 
-cardHeading.innerHTML = text
-StyleElements(`font-size:50px; font-weight:bold; margin-top:-40px; margin-bottom:10px`,cardHeading)
+  cardHeading.innerHTML = text
+StyleElements(`font-size:50px; font-weight:bolder; margin-top:-40px; margin-bottom:10px`,cardHeading)
 
 cardBody.src = rightBody.children[0].src
 cardbodyDiv.appendChild(cardBody)
@@ -212,7 +215,10 @@ showCardDiv.appendChild(cardDiv)
 
 let cameraDiv = document.createElement("div");
 let cameraImg = document.createElement("img");
-cameraImg.addEventListener("click",()=>{showCard(rightHeading.innerHTML,rightBody.childNodes)})
+cameraImg.addEventListener("click",()=>{
+  if(rightHeading.innerHTML=="")
+    rightHeading.innerHTML = "Stuff"
+  showCard(rightHeading.innerHTML,rightBody.childNodes)})
 cameraImg.src = "assets/images/camera.png"
 cameraImg.style.height = "30px"
 cameraDiv.style.width = "60px"
@@ -243,15 +249,16 @@ rightSide.style.marginTop="2rem"
 
 
 let rightHeading = document.createElement("h1")
-rightHeading.style.fontWeight = "bold"
 rightHeading.style.fontSize ="40px"
 rightHeading.style.padding = "10px"
 rightHeading.style.textAlign = "center"
+rightHeading.style.fontWeight = "bolder"
+rightHeading.style.fontFamily = "Montserrat"
 
 
 let rightBody = document.createElement("div")
 
-rightBody.style.marginLeft = "4rem"
+rightBody.style.marginLeft = "6rem"
 rightBody.style.paddingTop = "70px"
 rightBody.classList.add("rightImageDiv")
 rightBody.style.height = "50%"
@@ -271,6 +278,29 @@ showCardDiv.style.textAlign = "center"
 showCardDiv.style.marginLeft = "200px"
 showCardDiv.style.marginRight = "200px"
 showCardDiv.style.marginTop = "40px"
-main.appendChild(showCardDiv)
 
+let footer = document.createElement("div");
+StyleElements(`display:flex;justify-content:center;column-gap:15px;margin-top:200px;align-items:flex-end`,footer);
+
+
+
+const footerCreateAppend = (value,link,tag,parent, style) => {
+  let tagName = document.createElement(tag);
+  tagName.innerHTML = value;
+  tagName.target = "_blank";
+  style !== null && (tagName.style.cssText += style);
+  tagName.href = link;
+  parent.appendChild(tagName);
+};
+
+//let credits = document.getElementById("span")
+footerCreateAppend("&hearts;",null,"span",footer,null)
+footerCreateAppend("Credits:",null,"p",footer,null)
+footerCreateAppend("Polaroid",null,"a",footer,"text-decoration:none;color:black")
+footerCreateAppend("TV",null,"a",footer,"text-decoration : none; color:black")
+footerCreateAppend("Traitor",null,"a",footer,"text-decoration : none; color:black")
+footerCreateAppend("Fall Guy",null,"a",footer,"text-decoration : none; color:black")
+footerCreateAppend("Radio",null,"a",footer,"text-decoration:none;color:black")
+main.appendChild(showCardDiv)
+main.appendChild(footer)
 
