@@ -74,6 +74,12 @@ let buttonsGroup1 = document.createElement("div")
 const buttonCreate = (text) =>{
   let buttons= document.createElement("button")
   buttons.addEventListener("click",()=>{displayImage(text)})
+  buttons.style.padding = "10px"
+  buttons.style.border = "black solid"
+  buttons.style.borderRadius="10px"
+  buttons.style.backgroundColor = "white"
+  buttons.style.margin = "10px"
+  buttons.style.boxShadow = "0px 2px"
   buttons.innerHTML = text
   return buttons
 }
@@ -86,10 +92,15 @@ leftSide.appendChild(buttonsGroup1)
 let buttonsGroup2 = document.createElement("div")
 let blingName = document.createElement("input")
 blingName.oninput=function(event) {rightHeading.textContent = event.target.value}
-
+buttonsGroup2.style.margin="10px"
 //blingName.addEventListener("change", (event)=>{rightHeading.textContent = event.target.value})
 blingName.setAttribute("type","text")
 blingName.setAttribute("placeholder","Name your bling!")
+blingName.style.backgroundColor="black"
+blingName.style.borderRadius="10px"
+blingName.style.border = "black solid"
+blingName.style.color = "white"
+blingName.style.padding = "10px"
 buttonsGroup2.appendChild(blingName)
 
 let bgColors = ["Gold","Snow","DodgerBlue","LightSalmon", "LightCoral"]
@@ -97,7 +108,9 @@ let bgColor = document.createElement("select")
 bgColor.onchange=function(event) {
   document.querySelector("body").style.backgroundColor = event.target.value
 }
-
+bgColor.style.backgroundColor="black"
+bgColor.style.color = "white"
+bgColor.style.height = "35px"
 const colors = (text) =>{
   let option = document.createElement("option")
   option.innerHTML = text
@@ -124,12 +137,18 @@ radioDiv.appendChild(isBlobLabel)
 let isNope = document.createElement("input");
 let isNopeLabel = document.createElement("label");
 isNope.setAttribute("type", "radio");
+isNope.style.marginLeft="10px"
 isNope.setAttribute("value","Nope")
 isNopeLabel.innerHTML = "Nope"
 radioDiv.appendChild(isNope)
 radioDiv.appendChild(isNopeLabel)
 buttonsGroup2.appendChild(radioDiv)
 radioDiv.style.border = "solid black"
+radioDiv.style.margin="10px"
+radioDiv.style.padding="5px"
+radioDiv.style.borderRadius="10px"
+radioDiv.style.backgroundColor="black"
+radioDiv.style.color="white"
 leftSide.appendChild(buttonsGroup2)
 
 let blobImage = document.createElement("img")
@@ -154,7 +173,7 @@ const handleRadio = (event) => {
     //rightBody.appendChild(blobImage)
     //rightBody.style.backgroundImage = "url(`assets/images/blob.png`)"
     rightBody.style.backgroundImage = "url('assets/images/blob.png')"
-  
+
   }
   else if(event.target.value != "Blob"){
     isBlob.checked = false
@@ -195,10 +214,13 @@ cardHeading.innerHTML = text
 cardHeading.style.fontSize = "50px"
 cardHeading.style.fontWeight = "bold"
 //cardHeading.style.marginBottom = "5px"
-cardHeading.style.marginTop = "-20px"
+cardHeading.style.marginTop = "-50px"
+cardHeading.style.marginBottom = "20px"
+
+
 cardBody.src = rightBody.children[0].src
 cardbodyDiv.appendChild(cardBody)
-cardbodyDiv.style.height = "230px"
+cardbodyDiv.style.height = "240px"
 cardbodyDiv.style.marginTop="-5px"
 
 if(isBlob.checked) {
@@ -256,6 +278,9 @@ let rightHeading = document.createElement("h1")
 rightHeading.style.fontWeight = "bold"
 rightHeading.style.fontSize = "40px"
 rightHeading.style.marginTop = "-40px"
+rightHeading.style.padding = "20px"
+
+
 rightHeading.style.textAlign = "center"
 
 
