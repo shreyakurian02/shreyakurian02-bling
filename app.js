@@ -46,8 +46,8 @@ leftSide.appendChild(headerDiv)
 
 const displayImage = (text) =>{
   let buttonImage = document.createElement("img")
-  buttonImage.style.height = "6rem"
-  buttonImage.style.width = "6rem"
+  buttonImage.style.height = "10rem"
+  buttonImage.style.width = "10rem"
   buttonImage.style.position = "relative"
   buttonImage.style.bottom = "0.8rem"
   buttonImage.style.left = "2.5rem"
@@ -114,6 +114,7 @@ bgColors.map((color)=>{
   colors(color)
 })
 buttonsGroup2.appendChild(bgColor)
+document.querySelector("body").style.backgroundColor = bgColor.value
 
 let radioDiv = document.createElement("div");
 StyleElements(`width:130px; display:inline; `,radioDiv)
@@ -182,7 +183,8 @@ cardDiv.appendChild(cancel)
 cancel.addEventListener("click", () => {deleteCard(cardDiv.id)})
 
   cardHeading.innerHTML = text
-StyleElements(`font-size:50px; font-weight:bolder; margin-top:-40px; margin-bottom:10px`,cardHeading)
+StyleElements(`font-size:50px; font-weight:900; margin-top:-40px; margin-bottom:10px;`,cardHeading)
+StyleElements(`position:relative; top:20px`,cardBody)
 
 cardBody.src = rightBody.children[0].src
 cardbodyDiv.appendChild(cardBody)
@@ -198,15 +200,16 @@ if(isBlob.checked) {
 cardBody.style.width = "150px"
 cardBody.style.height = "150px"
 
-//cardBody.appendChild(rightBody.children[0])
+
 cardDiv.appendChild(cardHeading)
 cardDiv.appendChild(cardbodyDiv)
 cardDiv.style.border = "black solid"
 cardDiv.style.marginRight = "20px"
 cardDiv.style.height = "300px"
+cardDiv.style.boxShadow = "3px 2px"
 cardDiv.style.width = "300px"
 cardDiv.style.marginBottom = "40px"
-//cardDiv.style.position = "relative"
+
 cardDiv.style.backgroundColor = bgColor.value
 cardDiv.style.textAlign = "center"
 showCardDiv.appendChild(cardDiv)
@@ -238,31 +241,30 @@ insideMainDiv.style.width = "100%"
 leftSide.style.width = "45vw"
 rightSide.style.width = "30vw"
 leftSide.style.marginLeft="12rem"
-//ightSide.style.marginLeft= "50px"
-//leftSide.style.border = "black solid"
-//rightSide.style.border = "green solid"
+
 rightSide.style.flexFlow = 5
-//rightSide.style.marginLeft="25rem"
+
 
 rightSide.style.marginTop="2rem"
-//rightSide.style.display = "flex"
+
 
 
 let rightHeading = document.createElement("h1")
 rightHeading.style.fontSize ="40px"
 rightHeading.style.padding = "10px"
 rightHeading.style.textAlign = "center"
-rightHeading.style.fontWeight = "bolder"
+rightHeading.style.fontWeight = "900"
 rightHeading.style.fontFamily = "Montserrat"
-
+rightHeading.style.marginRight = "-90px"
 
 let rightBody = document.createElement("div")
 
 rightBody.style.marginLeft = "6rem"
 rightBody.style.paddingTop = "70px"
 rightBody.classList.add("rightImageDiv")
-rightBody.style.height = "50%"
-rightBody.style.width = "50%"
+rightBody.marginRight = "20px"
+rightBody.style.height = "20rem"
+rightBody.style.width = "20rem"
 rightBody.style.backgroundSize = "cover"
 rightSide.appendChild(rightHeading)
 rightSide.appendChild(rightBody)
@@ -279,8 +281,8 @@ showCardDiv.style.marginLeft = "200px"
 showCardDiv.style.marginRight = "200px"
 showCardDiv.style.marginTop = "40px"
 
-let footer = document.createElement("div");
-StyleElements(`display:flex;justify-content:center;column-gap:15px;margin-top:200px;align-items:flex-end`,footer);
+let footer = document.createElement("footer");
+StyleElements(`display:flex;justify-content:center;column-gap:15px;align-items:flex-end;margin-top:200px;`,footer);
 
 
 
@@ -293,7 +295,7 @@ const footerCreateAppend = (value,link,tag,parent, style) => {
   parent.appendChild(tagName);
 };
 
-//let credits = document.getElementById("span")
+
 footerCreateAppend("&hearts;",null,"span",footer,null)
 footerCreateAppend("Credits:",null,"p",footer,null)
 footerCreateAppend("Polaroid",null,"a",footer,"text-decoration:none;color:black")
