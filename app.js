@@ -7,9 +7,18 @@ var id = 1
 let root = document.querySelector("#root");
 
 let main = document.createElement("div")
+main.style.fontFamily="Montserrat"
 let insideMainDiv = document.createElement("div")
 window.onload = function () {
   document.body.appendChild(main);
+};
+
+
+const StyleElements = (
+  style = null,
+  tagName
+) => {
+  style !== null && (tagName.style.cssText += style);
 };
 
 
@@ -17,39 +26,30 @@ let leftSide = document.createElement("div")
 let rightSide = document.createElement("div")
 let appHeading = document.createElement("header")
 appHeading.innerHTML = "BLING!"
+StyleElements(`text-align:center; margin-top:30px; font-size:30px; font-weight:bold; margin-bottom:10px`,appHeading)
 main.appendChild(appHeading)
-appHeading.style.textAlign =  "center"
-appHeading.style.marginTop =  "30px"
-appHeading.style.fontSize =  "30px"
-appHeading.style.fontWeight =  "bold"
-main.style.fontFamily="Montserrat"
+
 let headerDiv = document.createElement("div")
 let headerOne = document.createElement("h2")
 headerOne.innerHTML = "Sizzle your Life"
-headerOne.style.fontSize =  "30px"
-headerOne.style.marginTop =  "50px"
+StyleElements(`margin-top:50px; font-size:30px;`,headerOne)
 headerDiv.appendChild(headerOne)
 
 let headerTwo = document.createElement("h1")
 headerTwo.innerHTML = "Make a Card"
 headerDiv.appendChild(headerTwo)
-headerTwo.style.fontSize =  "50px"
-headerTwo.style.marginTop =  "20px"
-headerTwo.style.fontWeight =  "bold"
-headerDiv.style.marginTop = "30px"
-headerDiv.style.marginBottom = "80px"
+StyleElements(`font-size:50px; margin-top:20px; font-weight:bold; margin-top:30px; margin-bottom:80px`,headerTwo)
 leftSide.appendChild(headerDiv)
 
 
 const displayImage = (text) =>{
-
   let buttonImage = document.createElement("img")
-  buttonImage.style.height = "150px"
-  buttonImage.style.width = "150px"
-  //buttonImage.style.zIndex = 4
-  //buttonImage.style.position = "absolute"
-  //buttonImage.style.top = "60px"
-  //buttonImage.style.left = "80px"
+  buttonImage.style.height = "100px"
+  buttonImage.style.width = "100px"
+  buttonImage.style.position = "relative"
+  buttonImage.style.bottom = "20px"
+  buttonImage.style.left = "40px"
+  buttonImage.style.textAlign="center"
 
   let element = document.querySelector(".rightImageDiv")
   console.log(element.value)
@@ -64,7 +64,6 @@ const displayImage = (text) =>{
     case "Traitor" : buttonImage.src = "assets/images/among-us.png";break;
     case "Radio" : buttonImage.src = "assets/images/radio-02.png";break;
   }
-  //rightBody.style.border = "red solid"
   rightBody.appendChild(buttonImage)
 }
 
@@ -74,12 +73,7 @@ let buttonsGroup1 = document.createElement("div")
 const buttonCreate = (text) =>{
   let buttons= document.createElement("button")
   buttons.addEventListener("click",()=>{displayImage(text)})
-  buttons.style.padding = "10px"
-  buttons.style.border = "black solid"
-  buttons.style.borderRadius="10px"
-  buttons.style.backgroundColor = "white"
-  buttons.style.margin = "10px"
-  buttons.style.boxShadow = "0px 2px"
+  StyleElements(`padding:10px; border:black solid; border-radius:10px; background-color:white; margin:10px; box-shadow:0px 2px;`,buttons)
   buttons.innerHTML = text
   return buttons
 }
@@ -91,31 +85,25 @@ leftSide.appendChild(buttonsGroup1)
 
 let buttonsGroup2 = document.createElement("div")
 let blingName = document.createElement("input")
-blingName.oninput=function(event) {rightHeading.textContent = event.target.value}
+blingName.oninput = function(event) {rightHeading.textContent = event.target.value}
 buttonsGroup2.style.margin="10px"
-//blingName.addEventListener("change", (event)=>{rightHeading.textContent = event.target.value})
 blingName.setAttribute("type","text")
 blingName.setAttribute("placeholder","Name your bling!")
-blingName.style.backgroundColor="black"
-blingName.style.borderRadius="10px"
-blingName.style.border = "black solid"
-blingName.style.color = "white"
-blingName.style.padding = "10px"
+StyleElements(`background-color:black; border-radius:10px; border:black solid; color:white; padding:10px`,blingName)
 buttonsGroup2.appendChild(blingName)
 
-let bgColors = ["Gold","Snow","DodgerBlue","LightSalmon", "LightCoral"]
+let bgColors = ["Gold","Snow","DodgerBlue","LightSalmon", "LightCoral", ]
 let bgColor = document.createElement("select")
 bgColor.onchange=function(event) {
   document.querySelector("body").style.backgroundColor = event.target.value
 }
-bgColor.style.backgroundColor="black"
-bgColor.style.color = "white"
-bgColor.style.height = "35px"
+StyleElements(`background-color:black; margin-left:10px; color:white; height:35px`,bgColor)
+
+
 const colors = (text) =>{
   let option = document.createElement("option")
   option.innerHTML = text
   bgColor.add(option)
-
 }
 
 bgColors.map((color)=>{
@@ -123,16 +111,16 @@ bgColors.map((color)=>{
 })
 buttonsGroup2.appendChild(bgColor)
 
-let radioDiv = document.createElement("idiv");
+let radioDiv = document.createElement("div");
+StyleElements(`width:130px; display:inline; `,radioDiv)
 let isBlob = document.createElement("input");
 let isBlobLabel = document.createElement("label");
 isBlob.setAttribute("type", "radio");
 isBlob.setAttribute("value","Blob")
 isBlobLabel.innerHTML = "Blob"
-
+isBlobLabel.style.fontSize = "12px"
 radioDiv.appendChild(isBlob)
 radioDiv.appendChild(isBlobLabel)
-
 
 let isNope = document.createElement("input");
 let isNopeLabel = document.createElement("label");
@@ -140,47 +128,30 @@ isNope.setAttribute("type", "radio");
 isNope.style.marginLeft="10px"
 isNope.setAttribute("value","Nope")
 isNopeLabel.innerHTML = "Nope"
+isNopeLabel.style.fontSize = "12px"
+
 radioDiv.appendChild(isNope)
 radioDiv.appendChild(isNopeLabel)
 buttonsGroup2.appendChild(radioDiv)
-radioDiv.style.border = "solid black"
-radioDiv.style.margin="10px"
-radioDiv.style.padding="5px"
-radioDiv.style.borderRadius="10px"
-radioDiv.style.backgroundColor="black"
-radioDiv.style.color="white"
+StyleElements(`border:solid black; margin:10px; padding:5px; border-radius:10px; background-color:black; color:white;`,radioDiv)
 leftSide.appendChild(buttonsGroup2)
 
 let blobImage = document.createElement("img")
 blobImage.src = "assets/images/blob.png"
-blobImage.style.height = "350px"
-blobImage.style.width = "350px"
-blobImage.style.zIndex = 1
-//blobImage.style.position="relative"
-//blobImage.style.top ="0"
-//blobImage.style.left = "0"
-//blobImage.style.bottom = "150px"
-//blobImage.style.bottom = "130px"
-
-
+StyleElements(`height:350px; width:350px; z-index:1`,blobImage)
 
 const handleRadio = (event) => {
-  //console.log(event.target)
   if(event.target.value == "Blob"){
     console.log(event.target)
     isNope.checked=false
     event.target.checked = true
-    //rightBody.appendChild(blobImage)
-    //rightBody.style.backgroundImage = "url(`assets/images/blob.png`)"
     rightBody.style.backgroundImage = "url('assets/images/blob.png')"
-
   }
   else if(event.target.value != "Blob"){
     isBlob.checked = false
     event.target.checked = true
     rightBody.style.backgroundImage = "none"
   }
-
 }
 
 isBlob.addEventListener("click",(event) => {handleRadio(event)})
@@ -192,8 +163,7 @@ const deleteCard = (id) => {
   showCardDiv.removeChild(toDeleteCard)
 }
 
-
-const showCard = (text,img) => {
+const showCard = (text) => {
 let cardDiv = document.createElement("div")
 cardDiv.setAttribute("id","id"+id.toString())
 id = id+1
@@ -201,22 +171,13 @@ let cardHeading = document.createElement("h1")
 let cardbodyDiv = document.createElement("div")
 let cardBody = document.createElement("img")
 let cancel = document.createElement("img")
-cancel.style.position="relative"
-cancel.style.right = "-150px"
-cancel.style.top = "-10px"
+StyleElements(`position:relative; right:-150px; top:-10px; height:35px;`,cancel)
 cancel.src = "assets/images/icon_delete.png"
-cancel.style.height = "35px"
-cancel.style.height = "35px"
 cardDiv.appendChild(cancel)
 cancel.addEventListener("click", () => {deleteCard(cardDiv.id)})
 
 cardHeading.innerHTML = text
-cardHeading.style.fontSize = "50px"
-cardHeading.style.fontWeight = "bold"
-//cardHeading.style.marginBottom = "5px"
-cardHeading.style.marginTop = "-50px"
-cardHeading.style.marginBottom = "20px"
-
+StyleElements(`font-size:50px; font-weight:bold; margin-top:-40px; margin-bottom:10px`,cardHeading)
 
 cardBody.src = rightBody.children[0].src
 cardbodyDiv.appendChild(cardBody)
@@ -239,15 +200,11 @@ cardDiv.style.border = "black solid"
 cardDiv.style.marginRight = "20px"
 cardDiv.style.height = "300px"
 cardDiv.style.width = "300px"
-cardDiv.style.marginTop = "30px"
+cardDiv.style.marginBottom = "40px"
 //cardDiv.style.position = "relative"
 cardDiv.style.backgroundColor = bgColor.value
-
-
-
 cardDiv.style.textAlign = "center"
 showCardDiv.appendChild(cardDiv)
-
 }
 
 
@@ -259,37 +216,27 @@ cameraImg.style.height = "30px"
 cameraDiv.style.width = "60px"
 cameraDiv.style.textAlign='center'
 cameraDiv.style.padding='10px'
-//cameraDiv.style.border = "solid black"
+cameraDiv.style.border = "solid black"
 cameraDiv.style.borderRadius='10px'
+cameraDiv.style.marginLeft='10px'
+cameraDiv.style.boxShadow = "0px 2px"
 cameraDiv.appendChild(cameraImg)
 leftSide.appendChild(cameraDiv)
 
 insideMainDiv.appendChild(leftSide)
-//leftSide.style.border="black solid"
-//insideMainDiv.style.border = "red solid"
-
-
 insideMainDiv.style.display = "flex"
-//insideMainDiv.style.justifyContent = "center"
 leftSide.style.marginLeft="200px"
 rightSide.style.marginLeft="400px"
+
 rightSide.style.marginTop="100px"
 let rightHeading = document.createElement("h1")
 rightHeading.style.fontWeight = "bold"
 rightHeading.style.fontSize = "40px"
-rightHeading.style.marginTop = "-40px"
-rightHeading.style.padding = "20px"
-
-
+rightHeading.style.padding = "10px"
 rightHeading.style.textAlign = "center"
 
-
 let rightBody = document.createElement("div")
-rightBody.style.marginTop = "30px"
-//rightBody.style.position = "relative"
-//rightBody.style.top = "0px"
-//rightBody.style.left = "0px"
-
+rightBody.style.paddingTop = "70px"
 rightBody.classList.add("rightImageDiv")
 rightBody.style.height = "200px"
 rightBody.style.width = "200px"
@@ -297,7 +244,6 @@ rightBody.style.backgroundSize = "cover"
 rightSide.appendChild(rightHeading)
 rightSide.appendChild(rightBody)
 insideMainDiv.appendChild(rightSide)
-
 main.appendChild(insideMainDiv)
 
 let showCardDiv = document.createElement("div")
@@ -308,7 +254,6 @@ showCardDiv.style.textAlign = "center"
 showCardDiv.style.marginLeft = "200px"
 showCardDiv.style.marginRight = "200px"
 showCardDiv.style.marginTop = "40px"
-
 main.appendChild(showCardDiv)
 
 
