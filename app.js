@@ -6,6 +6,44 @@ Your code goes in this file
 var id = 1
 let root = document.querySelector("#root");
 
+function myFunction(x) {
+  if (x.matches) {
+      insideMainDiv.style.flexDirection = "column"
+      rightBody.style.marginLeft = "2rem"
+      leftSide.style.marginLeft="50px"
+      rightSide.style.marginTop = "1rem"
+      headerOne.fontSize ="100px"
+      leftSide.style.width = "80%"
+      rightSide.style.width = "80%"
+      rightBody.style.margin.left = "50px"
+      buttonsGroup1.style.marginLeft = "-0.9rem"
+      buttonsGroup2.style.display="flex"
+      buttonsGroup2.style.flexDirection ="column"
+      buttonsGroup2.style.justifyContent="space-around"
+      blingName.style.width = "180px"
+      blingName.style.marginLeft = "-1.5rem"
+      bgColor.style.width = "100px"
+      bgColor.style.marginTop = "10px"
+      bgColor.style.marginLeft = "-1.5rem"
+      buttonsGroup2.style.padding="10px"
+      radioDiv.style.width="150px"
+      radioDiv.style.marginLeft = "-1.5rem"
+      radioDiv.style.marginTop = "10px"
+      showCardDiv.style.marginLeft = "2rem"
+      showCardDiv.style.width="200px"
+      showCardDiv.style.width = "20rem"
+      showCardDiv.style.textAlign = "center"
+  }
+}
+
+let x = window.matchMedia("(max-width: 600px)")
+x.addListener(myFunction)
+myFunction(x)
+x.addEventListener("resize",()=>{myFunction(x)})
+
+
+
+
 let main = document.createElement("div")
 main.style.fontFamily="Montserrat"
 main.style.width = "100%"
@@ -171,6 +209,7 @@ const deleteCard = (id) => {
 
 const showCard = (text) => {
 let cardDiv = document.createElement("div")
+cardDiv.style.minWidth = "10px"
 cardDiv.setAttribute("id","id"+id.toString())
 id = id+1
 let cardHeading = document.createElement("h1")
@@ -181,8 +220,7 @@ StyleElements(`position:relative; right:-150px; top:-10px; height:35px;`,cancel)
 cancel.src = "assets/images/icon_delete.png"
 cardDiv.appendChild(cancel)
 cancel.addEventListener("click", () => {deleteCard(cardDiv.id)})
-
-  cardHeading.innerHTML = text
+cardHeading.innerHTML = text
 StyleElements(`font-size:50px; font-weight:900; margin-top:-40px; margin-bottom:10px;`,cardHeading)
 StyleElements(`position:relative; top:20px`,cardBody)
 
@@ -209,6 +247,7 @@ cardDiv.style.height = "300px"
 cardDiv.style.boxShadow = "3px 2px"
 cardDiv.style.width = "300px"
 cardDiv.style.marginBottom = "40px"
+
 
 cardDiv.style.backgroundColor = bgColor.value
 cardDiv.style.textAlign = "center"
@@ -274,10 +313,11 @@ main.appendChild(insideMainDiv)
 
 let showCardDiv = document.createElement("div")
 showCardDiv.style.display = "flex"
+showCardDiv.style.minWidth = "10px"
 showCardDiv.style.flexDirection = "row"
 showCardDiv.style.flexWrap = "wrap"
 showCardDiv.style.textAlign = "center"
-showCardDiv.style.marginLeft = "200px"
+showCardDiv.style.marginLeft = "13rem"
 showCardDiv.style.marginRight = "200px"
 showCardDiv.style.marginTop = "40px"
 
