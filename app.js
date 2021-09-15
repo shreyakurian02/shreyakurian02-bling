@@ -17,6 +17,7 @@ function myFunction(x) {
       rightSide.style.width = "80%"
       rightBody.style.margin.left = "50px"
       buttonsGroup1.style.marginLeft = "-0.9rem"
+      buttonsGroup2.style.marginLeft = "0.9rem"
       buttonsGroup2.style.display="flex"
       buttonsGroup2.style.flexDirection ="column"
       buttonsGroup2.style.justifyContent="space-around"
@@ -87,12 +88,7 @@ leftSide.appendChild(headerDiv)
 
 const displayImage = (text) =>{
   let buttonImage = document.createElement("img")
-  buttonImage.style.height = "10rem"
-  buttonImage.style.width = "10rem"
-  buttonImage.style.position = "relative"
-  buttonImage.style.bottom = "0.8rem"
-  buttonImage.style.left = "2.5rem"
-  buttonImage.style.textAlign="center"
+  StyleElements(`height:10rem; width:10rem; position:relative; bottom:0.8rem; left:2.5rem; text-align:center`,buttonImage)
 
   let element = document.querySelector(".rightImageDiv")
   console.log(element.value)
@@ -112,6 +108,7 @@ const displayImage = (text) =>{
 
 let buttonList = ["Polaroid", "TV", "Traitor" ,"Fall Guy", "Radio"]
 let buttonsGroup1 = document.createElement("div")
+buttonsGroup1.style.marginLeft = "-15px"
 
 const buttonCreate = (text) =>{
   let buttons= document.createElement("button")
@@ -126,9 +123,10 @@ buttonList.map((buttonName)=>{
 })
 leftSide.appendChild(buttonsGroup1)
 
+//second set of buttons - (input, color, blob)
 let buttonsGroup2 = document.createElement("div")
 
-
+//Input bling name
 let blingName = document.createElement("input")
 blingName.oninput = function(event) {rightHeading.textContent = event.target.value}
 buttonsGroup2.style.margin="0.8rem"
@@ -137,6 +135,7 @@ blingName.setAttribute("placeholder","Name your bling!")
 StyleElements(`background-color:black; border-radius:0.8rem; border:black solid; color:white; padding:0.8rem`,blingName)
 buttonsGroup2.appendChild(blingName)
 
+//Color choice
 let bgColors = ["Gold","Snow","DodgerBlue","LightSalmon", "LightCoral", ]
 let bgColor = document.createElement("select")
 bgColor.onchange=function(event) {
@@ -155,8 +154,10 @@ bgColors.map((color)=>{
   colors(color)
 })
 buttonsGroup2.appendChild(bgColor)
+buttonsGroup2.style.marginLeft = "-5px"
 document.querySelector("body").style.backgroundColor = bgColor.value
 
+//Blob and Nope radio buttons
 let radioDiv = document.createElement("div");
 StyleElements(`width:130px; display:inline; `,radioDiv)
 let isBlob = document.createElement("input");
@@ -187,6 +188,7 @@ let blobImage = document.createElement("img")
 blobImage.src = "assets/images/blob.png"
 StyleElements(`height:350px; width:350px; z-index:1`,blobImage)
 
+//handling of radio buttons
 const handleRadio = (event) => {
   if(event.target.value == "Blob"){
     console.log(event.target)
@@ -204,6 +206,7 @@ const handleRadio = (event) => {
 isBlob.addEventListener("click",(event) => {handleRadio(event)})
 isNope.addEventListener("click",(event) => {handleRadio(event)})
 
+//To delete a card
 const deleteCard = (id) => {
   let toDeleteCard = document.querySelector(`#${id}`)
   console.log(toDeleteCard)
@@ -229,34 +232,21 @@ StyleElements(`position:relative; top:20px`,cardBody)
 
 cardBody.src = rightBody.children[0].src
 cardbodyDiv.appendChild(cardBody)
-cardbodyDiv.style.height = "240px"
-cardbodyDiv.style.marginTop="-5px"
+StyleElements(`height:240px; margin-top:-5px`,cardbodyDiv)
 
 if(isBlob.checked) {
   cardbodyDiv.style.backgroundImage =  "url('assets/images/blob.png')"
   cardbodyDiv.style.backgroundSize = "cover"
-
-
 }
 cardBody.style.width = "150px"
 cardBody.style.height = "150px"
-
-
+StyleElements(`width:150px;height:150px;`,cardBody)
 cardDiv.appendChild(cardHeading)
 cardDiv.appendChild(cardbodyDiv)
-cardDiv.style.border = "black solid"
-cardDiv.style.marginRight = "20px"
-cardDiv.style.height = "300px"
-cardDiv.style.boxShadow = "2px 3px 5px black"
-cardDiv.style.width = "300px"
-cardDiv.style.marginBottom = "40px"
-
-
+StyleElements(`border:black solid; margin-right:20px; height:300px; box-shadow:2px 3px 5px black;width:300px; margin-bottom:40px; text-align:center`,cardDiv)
 cardDiv.style.backgroundColor = bgColor.value
-cardDiv.style.textAlign = "center"
 showCardDiv.appendChild(cardDiv)
 }
-
 
 let cameraDiv = document.createElement("div");
 let cameraImg = document.createElement("img");
@@ -265,14 +255,8 @@ cameraImg.addEventListener("click",()=>{
     rightHeading.innerHTML = "Stuff"
   showCard(rightHeading.innerHTML,rightBody.childNodes)})
 cameraImg.src = "assets/images/camera.png"
-cameraImg.style.height = "30px"
-cameraDiv.style.width = "60px"
-cameraDiv.style.textAlign='center'
-cameraDiv.style.padding='10px'
-cameraDiv.style.border = "solid black"
-cameraDiv.style.borderRadius='10px'
-cameraDiv.style.marginLeft='5px'
-cameraDiv.style.boxShadow = "2px 3px 5px black"
+StyleElements(`height:30px;`,cameraImg)
+StyleElements(`width:60px; text-align:center; padding:10px; border:solid black;border-radius:10px;margin-left:2px; box-shadow:2px 3px 5px black`,cameraDiv)
 cameraDiv.appendChild(cameraImg)
 leftSide.appendChild(cameraDiv)
 
@@ -283,9 +267,6 @@ insideMainDiv.style.width = "100%"
 leftSide.style.width = "45vw"
 rightSide.style.width = "30vw"
 leftSide.style.marginLeft="12rem"
-
-rightSide.style.flexFlow = 5
-
 
 rightSide.style.marginTop="2rem"
 
@@ -320,14 +301,12 @@ showCardDiv.style.minWidth = "10px"
 showCardDiv.style.flexDirection = "row"
 showCardDiv.style.flexWrap = "wrap"
 showCardDiv.style.textAlign = "center"
-showCardDiv.style.marginLeft = "13rem"
+showCardDiv.style.marginLeft = "12rem"
 showCardDiv.style.marginRight = "200px"
 showCardDiv.style.marginTop = "40px"
 
 let footer = document.createElement("footer");
 StyleElements(`display:flex;justify-content:center;column-gap:15px;align-items:flex-end;margin-top:200px;`,footer);
-
-
 
 const footerCreateAppend = (value,link,tag,parent, style) => {
   let tagName = document.createElement(tag);
