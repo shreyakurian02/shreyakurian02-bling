@@ -39,7 +39,7 @@ function myFunction(x) {
 let x = window.matchMedia("(max-width: 600px)")
 //x.addListener(myFunction)
 //myFunction(x)
-x.addEventListener("load",()=>{myFunction(x)})
+x.addEventListener("resize",()=>{myFunction(x)})
 
 let main = document.createElement("div")
 main.style.fontFamily="Montserrat"
@@ -51,6 +51,7 @@ window.onload = function () {
   document.body.appendChild(main);
   let x = window.matchMedia("(max-width: 600px)")
   myFunction(x)
+  x.addEventListener("resize",()=>{myFunction(x)})
 
   //myFunction(x)
 };
@@ -115,7 +116,7 @@ let buttonsGroup1 = document.createElement("div")
 const buttonCreate = (text) =>{
   let buttons= document.createElement("button")
   buttons.addEventListener("click",()=>{displayImage(text)})
-  StyleElements(`padding:0.8rem; border:black solid; border-radius:0.8rem; background-color:white; margin:0.8rem; box-shadow:0px 2px;`,buttons)
+  StyleElements(`padding:0.8rem; border:black solid; border-radius:0.8rem; background-color:white; margin:0.8rem; box-shadow:2px 3px 5px black;`,buttons)
   buttons.innerHTML = text
   return buttons
 }
@@ -246,7 +247,7 @@ cardDiv.appendChild(cardbodyDiv)
 cardDiv.style.border = "black solid"
 cardDiv.style.marginRight = "20px"
 cardDiv.style.height = "300px"
-cardDiv.style.boxShadow = "3px 2px"
+cardDiv.style.boxShadow = "2px 3px 5px black"
 cardDiv.style.width = "300px"
 cardDiv.style.marginBottom = "40px"
 
@@ -270,8 +271,8 @@ cameraDiv.style.textAlign='center'
 cameraDiv.style.padding='10px'
 cameraDiv.style.border = "solid black"
 cameraDiv.style.borderRadius='10px'
-cameraDiv.style.marginLeft='10px'
-cameraDiv.style.boxShadow = "0px 2px"
+cameraDiv.style.marginLeft='5px'
+cameraDiv.style.boxShadow = "2px 3px 5px black"
 cameraDiv.appendChild(cameraImg)
 leftSide.appendChild(cameraDiv)
 
