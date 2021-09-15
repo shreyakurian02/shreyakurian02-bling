@@ -37,12 +37,9 @@ function myFunction(x) {
 }
 
 let x = window.matchMedia("(max-width: 600px)")
-x.addListener(myFunction)
-myFunction(x)
-x.addEventListener("resize",()=>{myFunction(x)})
-
-
-
+//x.addListener(myFunction)
+//myFunction(x)
+x.addEventListener("load",()=>{myFunction(x)})
 
 let main = document.createElement("div")
 main.style.fontFamily="Montserrat"
@@ -50,7 +47,12 @@ main.style.width = "100%"
 main.style.height = "100%"
 let insideMainDiv = document.createElement("div")
 window.onload = function () {
+  //myFunction(x)
   document.body.appendChild(main);
+  let x = window.matchMedia("(max-width: 600px)")
+  myFunction(x)
+
+  //myFunction(x)
 };
 
 
