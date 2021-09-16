@@ -132,17 +132,18 @@ blingName.oninput = function(event) {rightHeading.textContent = event.target.val
 buttonsGroup2.style.margin="0.8rem"
 blingName.setAttribute("type","text")
 blingName.setAttribute("placeholder","Name your bling!")
-StyleElements(`background-color:black; border-radius:0.8rem; border:black solid; color:white; padding:0.8rem`,blingName)
+StyleElements(`background-color:black; border-radius:0.8rem; border:black solid; color:white; padding:0.8rem;outline:none`,blingName)
 buttonsGroup2.appendChild(blingName)
 
 //Color choice
-let bgColors = ["Gold","Snow","DodgerBlue","LightSalmon", "LightCoral", ]
+let bgColors = ["Gold","Snow","DodgerBlue","LightSalmon", "LightCoral", "LightPin", "OrangeRed", "Tomato","DarkOrchid", "SpringGreen","Thistle" ]
+//height:37px;width:100px;border-radius:7px;border:none;background-color:black;opacity=0.7;color:white;box-shadow: 2px 3px 5px black`;
 let bgColor = document.createElement("select")
 bgColor.onchange=function(event) {
   document.querySelector("body").style.backgroundColor = event.target.value
 }
-StyleElements(`background-color:black; margin-left:0.8rem; color:white; height:2.2rem`,bgColor)
-
+//StyleElements(`height:37px;width:100px;border-radius:7px;border:none;background-color:black;opacity=0.7;color:white;box-shadow: 2px 3px 5px black`,bgColor)
+StyleElements(`background-color:black; margin-left:0.8rem; color:white; height:2.2rem;opacity=0.7;outline:none;box-shadow: 2px 3px 5px black; border:black;-webkit-appearance:none; padding-left:25px;text-align:center`,bgColor)
 
 const colors = (text) =>{
   let option = document.createElement("option")
